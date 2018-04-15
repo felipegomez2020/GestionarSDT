@@ -191,6 +191,7 @@ class RegistrarIngresos(APIView):
     def post(self,request):
         if request.data:
             cedula = request.data['cedula']
+            
             afiliado = Afiliado.objects.filter(pk=cedula)
             if len(afiliado)>0:
                 motivo = request.data['motivo']

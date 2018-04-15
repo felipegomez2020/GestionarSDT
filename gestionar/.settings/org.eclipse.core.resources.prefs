@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
 encoding//Aplicacion/ApiRest/admin.py=utf-8
 encoding//Aplicacion/ApiRest/models.py=utf-8
+encoding//Aplicacion/ApiRest/tests.py=utf-8
 encoding//Aplicacion/ApiRest/views.py=utf-8
 encoding//Aplicacion/admin.py=utf-8
 encoding//Aplicacion/models.py=utf-8
+encoding//Aplicacion/tests.py=utf-8
 encoding//Aplicacion/views.py=utf-8
