@@ -19,7 +19,3 @@ pyodbc==3.0.7
 pysqlite==2.7.0
 pytz==2018.3
 six==1.10.0
-tqdm==4.23.1
-unity-lens-photos==1.0
-unroll==0.1.0
-virtualenv==15.2.0
