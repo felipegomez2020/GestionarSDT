@@ -91,8 +91,6 @@ class Ingreso(models.Model):
         ingreso = cls(motivo = motivo,valor = valor, afiliado = afiliado)
         ingreso.save()
         return ingreso    
-    
-
     class  Meta(object):
         verbose_name = 'Ingreso'
         verbose_name_plural = 'Ingresos'
