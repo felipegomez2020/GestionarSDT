@@ -1,1 +1,1 @@
-web: gunicorn gestionar.gestionar.wsgi
+web: gunicorn gestionar/gestionar/wsgi
