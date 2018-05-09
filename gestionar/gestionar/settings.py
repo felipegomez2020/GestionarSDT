@@ -90,11 +90,11 @@ WSGI_APPLICATION = 'gestionar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'gestionardb',
-        'USER': 'gestionaruser',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'dd9f5avlau797',
+        'USER': 'dabisrjzrttsnk',
+        'PASSWORD': 'f530a6f592030cc89c2ac888db5c5fab4e268b66c7e5800bc63eb614aba66677',
+        'HOST': 'ec2-50-16-196-238.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
