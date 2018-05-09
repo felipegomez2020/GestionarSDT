@@ -191,7 +191,8 @@ class ObtenerAfiliadosMora(APIView):
         else:
             afiliados_mora = []
             for afiliado in afiliados:
-                mes_afiliado = (afiliado.ultima_afiliacion).month
+                #mes_afiliado = (afiliado.ultima_afiliacion).month
+                mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
                 mes_actual = datetime.now().month
                 
                 
@@ -221,6 +222,10 @@ class RenovarAfiliacion(APIView):
                 message = 'Gracias por realizar el respectivo pago'
                 from_email = settings.EMAIL_HOST_USER
                 recipient_list = [correo]
+                motivo = "renovacion afiliacion"
+                valor = "200000"
+                print usuario_afiliado
+                Ingreso.create(motivo,valor,usuario_afiliado[0])
                 send_mail(subject, message, from_email, recipient_list, fail_silently = True )
                 
                 return Response({"mensaje":"Actualizacion correcta"},status=status.HTTP_200_OK)
