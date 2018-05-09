@@ -1,1 +1,1 @@
-web: gunicorn gestionar.gestionar.wsgi --log-file -
+web: gunicorn gestionar.wsgi
