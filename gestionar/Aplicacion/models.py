@@ -97,7 +97,7 @@ class Ingreso(models.Model):
         verbose_name = 'Ingreso'
         verbose_name_plural = 'Ingresos'
 
-class Cita_Medica(models.Model):
+class CitaMedica(models.Model):
     dia_registro = models.DateTimeField(auto_now_add=True, blank=True)
     fecha_cita = models.CharField(max_length=30)
     tipo_cita = models.CharField(max_length=30)

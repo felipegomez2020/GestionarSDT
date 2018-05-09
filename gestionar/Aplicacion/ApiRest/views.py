@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from datetime import datetime
 from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario, Ingreso,\
-    Cita_Medica
+    CitaMedica
 from rest_framework.response import Response
 from rest_framework import status
 from serializers import AdminitrarivoSerializer
@@ -170,7 +170,6 @@ class ObtenerAfiliados(APIView):
             afiliados_ultimos =[]
             for afiliado in afiliados:
                 mes_afiliado = (afiliado.ultima_afiliacion).month
-                #mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
                 mes_actual = datetime.now().month
                 if(mes_afiliado -mes_actual)==0:
                     afiliados_ultimos.append(afiliado)
@@ -182,7 +181,7 @@ class ObtenerAfiliados(APIView):
 obtener_afiliados= ObtenerAfiliados.as_view()
 
 
-class ObtenerAfiliados_enmora(APIView):
+class ObtenerAfiliadosMora(APIView):
     afiliado_serializer = AfiliadoSerializer
     def get(self,request):
         afiliados = Afiliado.objects.all()
@@ -193,8 +192,8 @@ class ObtenerAfiliados_enmora(APIView):
             afiliados_mora = []
             for afiliado in afiliados:
                 mes_afiliado = (afiliado.ultima_afiliacion).month
-                #mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
                 mes_actual = datetime.now().month
+                
                 
                 if (mes_afiliado - mes_actual)<0:
                     afiliados_mora.append(afiliado)
@@ -204,7 +203,7 @@ class ObtenerAfiliados_enmora(APIView):
                 return Response(respuesta.data, status=status.HTTP_200_OK)
             else:
                 return Response({"mensaje":"no hay afiliados en mora"},status=status.HTTP_404_NOT_FOUND)
-obtener_afiliadosmora= ObtenerAfiliados_enmora.as_view()
+obtener_afiliadosmora= ObtenerAfiliadosMora.as_view()
 
 
 class RenovarAfiliacion(APIView):
@@ -217,7 +216,6 @@ class RenovarAfiliacion(APIView):
                 return Response({"mensaje":"NO se encontro datos correspondientes"},status=status.HTTP_404_NOT_FOUND)
             else:
                 usuario_afiliado.update(ultima_afiliacion =datetime.now())
-                #usuario_afiliado.update(ultima_afiliacion = datetime.strptime(str('2018-04-01'), '%Y-%m-%d'))
                 
                 subject = 'Gestionar Afiliacion'
                 message = 'Gracias por realizar el respectivo pago'
@@ -293,7 +291,6 @@ class RegistrarCitas(APIView):
         if request.data:
             cedula = request.data['cedula']
             afiliado = Afiliado.objects.filter(pk=cedula)
-            print cedula
             
             if len(afiliado)>0:
                 tipo_cita = request.data['tipo_cita']
@@ -302,7 +299,7 @@ class RegistrarCitas(APIView):
                 fecha_cita =request.data['fecha_cita']
                 nombre =request.data['nombre']
                 cedula_dps =request.data['cedula_dos']
-                Cita_Medica.create(fecha_cita,tipo_cita,valor,afiliado,nombre,cedula_dps)
+                CitaMedica.create(fecha_cita,tipo_cita,valor,afiliado,nombre,cedula_dps)
                 return Response({"mensaje":"Cita registrada correctamente"},status=status.HTTP_200_OK)
             else:
                 return Response({"mensaje":"No se encuentra la cedula"},status=status.HTTP_404_NOT_FOUND)
@@ -324,7 +321,7 @@ obtener = ObtenerIngresos.as_view()
 class ObtenerCitas(APIView):
     ingreso_serializer = CitaSerializer
     def get(self,request):
-        citas = Cita_Medica.objects.all()
+        citas = CitaMedica.objects.all()
         if len(citas)==0:
             return Response({"mensaje":"no hay datos para mostrar"},status=status.HTTP_404_NOT_FOUND)
         else:
