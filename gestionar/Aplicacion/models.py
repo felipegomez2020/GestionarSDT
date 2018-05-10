@@ -60,7 +60,7 @@ class Afiliado (models.Model):
         verbose_name_plural = 'Afiliados'
     
     
-    "ho"
+    "haaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 class Benefiniciario(models.Model):
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)
