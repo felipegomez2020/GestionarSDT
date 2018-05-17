@@ -28,4 +28,4 @@ Para Ejercutar este proyecto localmente es realmente facil:
     python manage.py runserver 0.0.0.0:8000
 
 
-# ara ejecutar los comandos que usan el archivo python manage.py es necesario ubicarse en la carpeta raiz de este archivo.
+# Para ejecutar los comandos que usan el archivo python manage.py es necesario ubicarse en la carpeta raiz de este archivo.
