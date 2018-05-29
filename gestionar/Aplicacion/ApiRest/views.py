@@ -191,8 +191,8 @@ class ObtenerAfiliadosMora(APIView):
         else:
             afiliados_mora = []
             for afiliado in afiliados:
-                #mes_afiliado = (afiliado.ultima_afiliacion).month
-                mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
+                mes_afiliado = (afiliado.ultima_afiliacion).month
+                #mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
                 mes_actual = datetime.now().month
                 
                 
