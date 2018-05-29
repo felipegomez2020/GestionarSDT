@@ -7,7 +7,7 @@ from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario,\
     Ingreso,CitaMedica
     
 class MyAdminSite(AdminSite):
-    site_url = 'http://52.91.174.233:8180/admin/'
+    site_url = 'http://52.91.174.233:8180/myadmin/'
 
 admin_site = MyAdminSite(name='myadmin')
 
