@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario,\
-    Ingreso, CitaMedica
+    Ingreso, CitaMedica, DerechoPeticion
 
 
 class AdminitrarivoSerializer(ModelSerializer):
@@ -26,4 +26,9 @@ class IngresoSerializer(ModelSerializer):
 class CitaSerializer(ModelSerializer):
     class Meta:
         model = CitaMedica
+        fields = '__all__'
+        
+class DerechoSerializer(ModelSerializer):
+    class Meta:
+        model = DerechoPeticion
         fields = '__all__'

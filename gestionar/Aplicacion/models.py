@@ -113,3 +113,19 @@ class CitaMedica(models.Model):
     class  Meta(object):
         verbose_name = 'Cita medica'
         verbose_name_plural = 'Citas medicas'
+        
+        
+class DerechoPeticion(models.Model):
+    dia_registro = models.DateTimeField(auto_now_add=True, blank=True)
+    costo = models.CharField(max_length=30)
+    descripcion = models.CharField(max_length=30)
+    afiliado = models.ForeignKey(Afiliado,on_delete=models.CASCADE)
+    
+        
+    @classmethod
+    def create(cls,costo,descripcion,afiliado):
+        derecho = cls(costo = costo,descripcion = descripcion,afiliado=afiliado)
+        derecho.save()
+    class  Meta(object):
+        verbose_name = 'Derecho de peticion'
+        verbose_name_plural = 'Derechos de peticiones'

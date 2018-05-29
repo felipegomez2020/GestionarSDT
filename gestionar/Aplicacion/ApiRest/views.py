@@ -4,13 +4,12 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from datetime import datetime
 from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario, Ingreso,\
-    CitaMedica
+    CitaMedica, DerechoPeticion
 from rest_framework.response import Response
 from rest_framework import status
 from serializers import AdminitrarivoSerializer
-from django.template.context_processors import request
 from Aplicacion.ApiRest.serializers import AfiliadoSerializer, BeneficiarioSerializer,\
-    IngresoSerializer, CitaSerializer
+    IngresoSerializer, CitaSerializer, DerechoSerializer
 
 
 from django.core.mail import send_mail
@@ -192,7 +191,6 @@ class ObtenerAfiliadosMora(APIView):
             afiliados_mora = []
             for afiliado in afiliados:
                 mes_afiliado = (afiliado.ultima_afiliacion).month
-                #mes_afiliado = datetime.strptime(str('2018-04-01'), '%Y-%m-%d').month
                 mes_actual = datetime.now().month
                 
                 
@@ -224,7 +222,6 @@ class RenovarAfiliacion(APIView):
                 recipient_list = [correo]
                 motivo = "renovacion afiliacion"
                 valor = "200000"
-                print usuario_afiliado
                 Ingreso.create(motivo,valor,usuario_afiliado[0])
                 send_mail(subject, message, from_email, recipient_list, fail_silently = True )
                 
@@ -232,6 +229,25 @@ class RenovarAfiliacion(APIView):
         else:
             return Response({"mensaje":"No se dictaron los parametros necesarios"},status=status.HTTP_400_BAD_REQUEST)
 renovarafiliacion= RenovarAfiliacion.as_view()
+
+
+
+class RegistrarDerechoPeticion(APIView):
+    def post(self,request):
+        if request.data:
+            cedula = request.data['cedula']
+            descripcion = request.data['descripcion']
+            costo = request.data['costo']
+            usuario_afiliado = Afiliado.objects.filter(pk=cedula)
+            if (len(usuario_afiliado)==0):
+                return Response({"mensaje":"NO se encontro datos correspondientes"},status=status.HTTP_404_NOT_FOUND)
+            else:
+                DerechoPeticion.create(costo,descripcion,usuario_afiliado[0])
+                Ingreso.create(descripcion,costo,usuario_afiliado[0])
+                return Response({"mensaje":"Actualizacion correcta"},status=status.HTTP_200_OK)
+        else:
+            return Response({"mensaje":"No se dictaron los parametros necesarios"},status=status.HTTP_400_BAD_REQUEST)
+derecho_peticion= RegistrarDerechoPeticion.as_view()
             
 
 class EnviarCorreo(APIView):
@@ -322,6 +338,18 @@ class ObtenerIngresos(APIView):
             respuesta = self.ingreso_serializer(ingresos, many=True, context={"request" : request})
             return Response(respuesta.data, status=status.HTTP_200_OK)
 obtener = ObtenerIngresos.as_view()
+
+
+class ObtenerDerechos(APIView):
+    ingreso_serializer = DerechoSerializer
+    def get(self,request):
+        ingresos = DerechoPeticion.objects.all() 
+        if len(ingresos)==0:
+            return Response({"mensaje":"no hay datos para mostrar"},status=status.HTTP_404_NOT_FOUND)
+        else:
+            respuesta = self.ingreso_serializer(ingresos, many=True, context={"request" : request})
+            return Response(respuesta.data, status=status.HTTP_200_OK)
+obtener = ObtenerDerechos.as_view()
 
 class ObtenerCitas(APIView):
     ingreso_serializer = CitaSerializer
