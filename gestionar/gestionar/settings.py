@@ -72,8 +72,8 @@ TEMPLATES = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'felipegomez202019@gmail.com'
-EMAIL_HOST_PASSWORD = '1113311702pipe'
+EMAIL_HOST_USER = 'gestionar.sevilla@gmail.com'
+EMAIL_HOST_PASSWORD = 'Gestionar.2018'
 EMAIL_PORT = 587
 
 

@@ -2,8 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django import forms
-from datetime import datetime
 
 # Create your models here.
 
@@ -43,7 +41,7 @@ class Afiliado (models.Model):
     pension = models.CharField(max_length=30)   
     arl = models.CharField(max_length=30)
     rango = models.IntegerField()
-    costo = models.FloatField()
+    costo = models.CharField(max_length=30)
     
     @classmethod
     def create(cls,nombres,apellidos,cedula,direccion,telefono,eps,arl,pension,rango,costo,correo):
@@ -60,7 +58,6 @@ class Afiliado (models.Model):
         verbose_name_plural = 'Afiliados'
     
     
-    "haaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 class Benefiniciario(models.Model):
     nombres = models.CharField(max_length=30)
     apellidos = models.CharField(max_length=30)
@@ -86,7 +83,7 @@ class Benefiniciario(models.Model):
 class Ingreso(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True)
     motivo = models.CharField(max_length=30)
-    valor = models.FloatField()
+    valor = models.CharField(max_length=30)
     afiliado = models.ForeignKey(Afiliado,on_delete=models.CASCADE)
         
     @classmethod
@@ -102,7 +99,7 @@ class CitaMedica(models.Model):
     dia_registro = models.DateTimeField(auto_now_add=True, blank=True)
     fecha_cita = models.CharField(max_length=30)
     tipo_cita = models.CharField(max_length=30)
-    valor= models.IntegerField()
+    valor= models.CharField(max_length=30)
     nombre = models.CharField(max_length=30)
     cedula = models.CharField(max_length=30)
     afiliado = models.ForeignKey(Afiliado,on_delete=models.CASCADE)
