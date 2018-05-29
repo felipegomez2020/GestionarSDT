@@ -14,7 +14,6 @@ class MyAdminSite(AdminSite):
 admin.site.site_header = "Gestionar"
 admin.site.site_title = "Gestionar"
 
-admin.site.register(MyModel,MyModelAdmin)
 admin.site.register(UsuarioAdministrativo)
 admin.site.register(Afiliado)
 admin.site.register(Benefiniciario)
