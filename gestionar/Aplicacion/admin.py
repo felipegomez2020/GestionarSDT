@@ -6,12 +6,11 @@ from django.contrib.admin import AdminSite
 from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario,\
     Ingreso,CitaMedica
     
-class MyModelAdmin(admin.ModelAdmin):
-    view_on_site = False
+from django.contrib.admin import AdminSite
+class MyAdminSite(AdminSite):
+    # Disable View on Site link on admin page
+    site_url = None
 
-
-    
-    
 admin.site.site_header = "Gestionar"
 admin.site.site_title = "Gestionar"
 
