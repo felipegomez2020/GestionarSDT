@@ -4,9 +4,8 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from django.contrib.admin import AdminSite
 from Aplicacion.models import UsuarioAdministrativo, Afiliado, Benefiniciario,\
-    Ingreso,CitaMedica
+    Ingreso,CitaMedica, DerechoPeticion
     
-from django.contrib.admin import AdminSite
 class MyAdminSite(AdminSite):
     # Disable View on Site link on admin page
     site_url = None
@@ -19,3 +18,5 @@ admin.site.register(Afiliado)
 admin.site.register(Benefiniciario)
 admin.site.register(Ingreso)
 admin.site.register(CitaMedica)
+admin.site.register(DerechoPeticion)
+

@@ -94,6 +94,8 @@ class Ingreso(models.Model):
     class  Meta(object):
         verbose_name = 'Ingreso'
         verbose_name_plural = 'Ingresos'
+    def __unicode__(self):
+        return self.afiliado.nombres
 
 class CitaMedica(models.Model):
     dia_registro = models.DateTimeField(auto_now_add=True, blank=True)
@@ -114,6 +116,9 @@ class CitaMedica(models.Model):
         verbose_name = 'Cita medica'
         verbose_name_plural = 'Citas medicas'
         
+    def __unicode__(self):
+        return self.afiliado.nombres
+        
         
 class DerechoPeticion(models.Model):
     dia_registro = models.DateTimeField(auto_now_add=True, blank=True)
@@ -129,3 +134,6 @@ class DerechoPeticion(models.Model):
     class  Meta(object):
         verbose_name = 'Derecho de peticion'
         verbose_name_plural = 'Derechos de peticiones'
+        
+    def __unicode__(self):
+        return self.afiliado.nombres
