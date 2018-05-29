@@ -90,14 +90,12 @@ WSGI_APPLICATION = 'gestionar.wsgi.application'
 
 
 
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dd9f5avlau797',
-        'USER': 'dabisrjzrttsnk',
-        'PASSWORD': 'f530a6f592030cc89c2ac888db5c5fab4e268b66c7e5800bc63eb614aba66677',
-        'HOST': 'ec2-50-16-196-238.compute-1.amazonaws.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(PROJECT_PATH, 'database.sqlite'),
     }
 }
 MEDIA_URL='/media/'
