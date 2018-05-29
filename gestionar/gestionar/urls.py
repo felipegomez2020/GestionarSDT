@@ -22,7 +22,7 @@ from Aplicacion.admin import admin_site
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^rest/', include('Aplicacion.ApiRest.urls')),
-    url(r'^admin/', admin_site.urls),
+    url(r'^myadmin/', admin_site.urls),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
