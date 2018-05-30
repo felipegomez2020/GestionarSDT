@@ -349,7 +349,7 @@ class ObtenerDerechos(APIView):
         else:
             respuesta = self.ingreso_serializer(ingresos, many=True, context={"request" : request})
             return Response(respuesta.data, status=status.HTTP_200_OK)
-obtener = ObtenerDerechos.as_view()
+obtener_derechos = ObtenerDerechos.as_view()
 
 class ObtenerCitas(APIView):
     ingreso_serializer = CitaSerializer

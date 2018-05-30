@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from Aplicacion.ApiRest.views import login_user, crear_usuario, registrar_afiliado, registrar_beneficiario, obtener_afiliados, obtener_beneficiarois,\
     eliminar, actualizar_afiliado, ingreso, obtener, obtener_afiliadosmora,\
-    renovarafiliacion, enviar_correo, registro_cita, obtener_citas, derecho_peticion
+    renovarafiliacion, enviar_correo, registro_cita, obtener_citas, derecho_peticion,\
+    obtener_derechos
 
 urlpatterns = [
      url(r'^login/$', login_user),
@@ -20,6 +21,6 @@ urlpatterns = [
      url(r'^registro_cita/$', registro_cita),
      url(r'^enviar_correo/$', enviar_correo),
      url(r'^registrarDerecho/$', derecho_peticion),
-     url(r'^obtenerDerechos/$', obtener),
+     url(r'^obtenerDerechos/$', obtener_derechos),
 
 ]
