@@ -22,5 +22,4 @@ urlpatterns = [
      url(r'^enviar_correo/$', enviar_correo),
      url(r'^registrarDerecho/$', derecho_peticion),
      url(r'^obtenerDerechos/$', obtener_derechos),
-
 ]
